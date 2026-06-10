@@ -19,7 +19,7 @@ const timezone = "ET / UTC−5";
       class="display mt-6 text-[clamp(3.4rem,11.5vw,11rem)] text-balance"
     >
       Let&rsquo;s cut the
-      <span class="text-(--color-accent)">downtime.</span>
+      <span class="text-(--color-accent-deep)">downtime.</span>
     </h2>
 
     <p
@@ -40,18 +40,21 @@ const timezone = "ET / UTC−5";
       </a>
     </div>
 
-    <p
-      class="mt-14 font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-ink-on-cream-dim) md:mt-16"
+    <ul
+      class="mt-14 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-ink-on-cream-dim) md:mt-16"
     >
-      {profile.location}
-      <span aria-hidden="true">&nbsp;·&nbsp;</span>
-      <a
-        href={`mailto:${profile.email}`}
-        class="lowercase transition-colors duration-150 hover:text-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-        >{profile.email}</a
-      >
-      <span aria-hidden="true">&nbsp;·&nbsp;</span>
-      {timezone}
-    </p>
+      {/* separators via pseudo-element so a dot never strands at a line end */}
+      <li class="whitespace-nowrap after:ml-3 after:content-['·'] last:after:content-none">
+        {profile.location}
+      </li>
+      <li class="whitespace-nowrap after:ml-3 after:content-['·'] last:after:content-none">
+        <a
+          href={`mailto:${profile.email}`}
+          class="lowercase transition-colors duration-150 hover:text-(--color-accent-deep) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+          >{profile.email}</a
+        >
+      </li>
+      <li class="whitespace-nowrap">{timezone}</li>
+    </ul>
   </div>
 </section>

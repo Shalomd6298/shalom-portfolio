@@ -8,6 +8,8 @@
 
   --color-ink-on-cream: #161614;
   --color-ink-on-cream-dim: #5c5a54;
+  /* darker accent for text on cream — #ff3d00 only hits ~2.9:1 there */
+  --color-accent-deep: #c43500;
   --color-ink-on-dark: #e8e6e1;
   --color-ink-on-dark-dim: #8a877f;
 
@@ -88,10 +90,10 @@ body {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-/* outlined display text (marquee) */
+/* outlined display text (marquee) — bright stroke for agency punch */
 @utility text-stroked {
   color: transparent;
-  -webkit-text-stroke: 1px var(--color-ink-on-dark-dim);
+  -webkit-text-stroke: 1px var(--color-ink-on-dark);
 }
 
 /* CSS-only infinite marquee */
@@ -107,3 +109,9 @@ body {
 }
 
 /* ── section-specific (agents may append below) ────────────────── */
+
+/* one shared scale for standard section H2s (CTA's bigger clamp is the
+   deliberate finale; Toolbox stays intentionally subordinate) */
+@utility display-h2 {
+  font-size: clamp(3rem, 8.5vw, 7rem);
+}

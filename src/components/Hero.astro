@@ -15,9 +15,9 @@ const meta = [
 <section id="top" class="bg-(--color-dark) text-(--color-ink-on-dark)">
   <div class="container-site flex min-h-[88svh] flex-col justify-between">
     <div class="pt-16 md:pt-24">
-      <p class="eyebrow text-(--color-ink-on-dark-dim)">{eyebrow}</p>
+      <p class="eyebrow text-balance text-(--color-ink-on-dark-dim)">{eyebrow}</p>
 
-      <h1 class="display mt-6 text-[clamp(3.4rem,15.5vw,14rem)] md:mt-8">
+      <h1 class="display mt-6 text-[clamp(3.4rem,17vw,16rem)] md:mt-8">
         <span class="block">Keeping</span>
         <span class="block">Production</span>
         <span class="block text-(--color-accent)">Boring.</span>
@@ -45,8 +45,8 @@ const meta = [
       class="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-(--color-line-dark) py-6 md:py-8"
     >
       {meta.map((item) => (
-        <li class="eyebrow flex items-center gap-3 text-(--color-ink-on-dark-dim)">
-          <span aria-hidden="true" class="inline-block h-1.5 w-1.5 rounded-full bg-(--color-accent)"></span>
+        <li class="eyebrow flex items-start gap-3 text-(--color-ink-on-dark-dim)">
+          <span aria-hidden="true" class="mt-[0.4em] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-accent)"></span>
           {item}
         </li>
       ))}
