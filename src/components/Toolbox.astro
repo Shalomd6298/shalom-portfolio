@@ -1,0 +1,77 @@
+---
+// Toolbox — DESIGN.md item 7. Dark, compact: grouped mono tag rows,
+// education + CKA folded in as two small cards. Zero JS.
+import { skills, education, certifications } from "../data/resume";
+---
+
+<section
+  id="toolbox"
+  aria-labelledby="toolbox-title"
+  class="bg-(--color-dark) text-(--color-ink-on-dark)"
+>
+  <div class="container-site py-14 md:py-20">
+    <p class="eyebrow text-(--color-ink-on-dark-dim)">04 — toolbox</p>
+    <h2 id="toolbox-title" class="display mt-3 text-3xl md:text-4xl">
+      The stack I reach for
+    </h2>
+
+    <!-- grouped skill rows -->
+    <ul role="list" class="mt-10 border-t border-(--color-line-dark)">
+      {
+        skills.map(({ group, items }) => (
+          <li class="grid gap-3 border-b border-(--color-line-dark) py-4 md:grid-cols-[15rem_1fr] md:items-baseline md:gap-10 md:py-5">
+            <h3 class="font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-ink-on-dark-dim)">
+              {group}
+            </h3>
+            <ul role="list" class="flex flex-wrap gap-2">
+              {items.map((item) => (
+                <li class="rounded-full border border-(--color-line-dark) px-3 py-1 font-mono text-xs whitespace-nowrap transition-colors duration-150 hover:border-(--color-accent)">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- education + certification, kept small -->
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      <article class="rounded-lg border border-(--color-line-dark) p-5">
+        <h3 class="eyebrow text-(--color-ink-on-dark-dim)">education</h3>
+        <ul role="list" class="mt-4 space-y-4">
+          {
+            education.map((e) => (
+              <li>
+                <p class="text-sm font-semibold">{e.school}</p>
+                <p class="mt-0.5 text-sm text-(--color-ink-on-dark-dim)">
+                  {e.degree} · {e.note}
+                </p>
+                <p class="mt-1 font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-ink-on-dark-dim)">
+                  {e.period}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="rounded-lg border border-(--color-line-dark) p-5">
+        <h3 class="eyebrow text-(--color-ink-on-dark-dim)">certification</h3>
+        <ul role="list" class="mt-4 space-y-4">
+          {
+            certifications.map((c) => (
+              <li>
+                <p class="text-sm font-semibold">{c.name}</p>
+                <p class="mt-0.5 text-sm text-(--color-ink-on-dark-dim)">{c.org}</p>
+                <p class="mt-1 font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-accent)">
+                  ✓ certified
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+---
+// Marquee — DESIGN.md item 3. Thin dark strip, CSS-only infinite scroll.
+// The track holds two identical lists; the animation translates -50% for a
+// seamless loop. The moving track is aria-hidden and the tool list is
+// exposed to screen readers once, as static sr-only text.
+const tools = [
+  "KUBERNETES",
+  "TERRAFORM",
+  "AWS",
+  "GO",
+  "PYTHON",
+  "CI/CD",
+  "PROMETHEUS",
+  "HELM",
+  "DOCKER",
+  "GCP",
+  "AZURE",
+  "ANSIBLE",
+];
+---
+
+<aside
+  aria-label="Tools and technologies"
+  class="overflow-hidden border-y border-(--color-line-dark) bg-(--color-dark) py-5 md:py-6"
+>
+  <p class="sr-only">{tools.join(", ")}</p>
+
+  <div class="marquee" aria-hidden="true">
+    {
+      [0, 1].map(() => (
+        <ul class="flex shrink-0 items-center">
+          {tools.map((tool) => (
+            <li class="flex items-center">
+              <span class="display text-stroked text-5xl whitespace-nowrap md:text-6xl">
+                {tool}
+              </span>
+              <span class="mx-6 text-xl text-(--color-accent) md:mx-8 md:text-2xl">
+                ✦
+              </span>
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</aside>

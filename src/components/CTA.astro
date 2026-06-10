@@ -1,0 +1,57 @@
+---
+// CTA — DESIGN.md item 8. Cream, the big close. Zero JS.
+import { profile } from "../data/resume";
+
+// Derived from profile.location (Boston, MA) — not a hardcoded resume fact.
+const timezone = "ET / UTC−5";
+---
+
+<section
+  id="contact"
+  aria-labelledby="contact-title"
+  class="bg-(--color-cream) text-(--color-ink-on-cream)"
+>
+  <div class="container-site py-24 md:py-32">
+    <p class="eyebrow text-(--color-ink-on-cream-dim)">05 — contact</p>
+
+    <h2
+      id="contact-title"
+      class="display mt-6 text-[clamp(3.4rem,11.5vw,11rem)] text-balance"
+    >
+      Let&rsquo;s cut the
+      <span class="text-(--color-accent)">downtime.</span>
+    </h2>
+
+    <p
+      class="mt-8 max-w-xl text-base leading-relaxed text-(--color-ink-on-cream-dim) md:mt-10 md:text-lg"
+    >
+      Open to DevOps, SRE, and platform engineering roles. If your pipelines
+      drag or your pager is loud — let&rsquo;s talk.
+    </p>
+
+    <div class="mt-10 md:mt-12">
+      <!-- btn-solid, recolored dark ink per brief (inline style wins over the utility's background) -->
+      <a
+        href={`mailto:${profile.email}`}
+        class="btn-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+        style="background: var(--color-ink-on-cream);"
+      >
+        say hello&ensp;↗
+      </a>
+    </div>
+
+    <p
+      class="mt-14 font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-ink-on-cream-dim) md:mt-16"
+    >
+      {profile.location}
+      <span aria-hidden="true">&nbsp;·&nbsp;</span>
+      <a
+        href={`mailto:${profile.email}`}
+        class="lowercase transition-colors duration-150 hover:text-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+        >{profile.email}</a
+      >
+      <span aria-hidden="true">&nbsp;·&nbsp;</span>
+      {timezone}
+    </p>
+  </div>
+</section>

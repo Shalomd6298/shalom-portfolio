@@ -1,72 +1,55 @@
 ---
+// Hero — the dark opening statement (DESIGN.md item 2). No terminal card, no images.
 import { profile } from "../data/resume";
+
+const eyebrow = `${profile.role} — ${profile.location}`;
+
+// Meta row: location + the CKA & clouds highlights, pulled from data (never hardcoded).
+const meta = [
+  profile.location,
+  profile.highlights.find((h) => h.startsWith("CKA")),
+  profile.highlights.find((h) => h.includes("AWS")),
+].filter(Boolean) as string[];
 ---
 
-<section id="top" class="relative overflow-hidden">
-  <!-- radial accent glow -->
-  <div
-    class="pointer-events-none absolute -top-40 left-1/2 h-130 w-200 -translate-x-1/2 rounded-full opacity-20 blur-3xl"
-    style="background: radial-gradient(closest-side, #3ddc97, transparent)"
-  >
-  </div>
+<section id="top" class="bg-(--color-dark) text-(--color-ink-on-dark)">
+  <div class="container-site flex min-h-[88svh] flex-col justify-between">
+    <div class="pt-16 md:pt-24">
+      <p class="eyebrow text-(--color-ink-on-dark-dim)">{eyebrow}</p>
 
-  <div class="container-site relative grid items-center gap-12 py-20 md:grid-cols-[1.15fr_1fr] md:py-28">
-    <div>
-      <p class="mb-4 font-mono text-sm text-(--color-accent)">hi, my name is</p>
-      <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-        {profile.name}.
+      <h1 class="display mt-6 text-[clamp(3.4rem,15.5vw,14rem)] md:mt-8">
+        <span class="block">Keeping</span>
+        <span class="block">Production</span>
+        <span class="block text-(--color-accent)">Boring.</span>
       </h1>
-      <h2 class="mt-2 text-2xl font-bold tracking-tight text-(--color-ink-dim) md:text-4xl">
-        I keep production boring.
-      </h2>
-      <p class="mt-6 max-w-xl leading-relaxed text-(--color-ink-dim)">
+
+      <p class="mt-8 max-w-prose text-base leading-relaxed text-(--color-ink-on-dark-dim) md:mt-10 md:text-lg">
         {profile.tagline}
       </p>
-      <div class="mt-8 flex flex-wrap gap-2">
-        {profile.highlights.map((h) => <span class="tag">{h}</span>)}
-      </div>
-      <div class="mt-10 flex flex-wrap items-center gap-4">
+
+      <div class="mt-10 flex flex-wrap items-center gap-4 md:mt-12">
         <a
-          href="#projects"
-          class="rounded-md bg-(--color-accent) px-5 py-2.5 font-mono text-sm font-semibold text-black transition-opacity hover:opacity-90"
-        >
-          view my work →
-        </a>
-        <a href={profile.links.github} class="link-accent font-mono text-sm">github</a>
-        <a href={profile.links.linkedin} class="link-accent font-mono text-sm">linkedin</a>
+          href="#work"
+          class="btn-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-ink-on-dark)"
+        >view work</a>
+        <a
+          href={profile.links.github}
+          rel="noopener"
+          class="btn-outline text-(--color-ink-on-dark) hover:bg-(--color-ink-on-dark) hover:text-(--color-dark) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+        >github</a>
       </div>
     </div>
 
-    <!-- terminal card -->
-    <div class="card overflow-hidden shadow-2xl shadow-black/60">
-      <div class="flex items-center gap-1.5 border-b border-(--color-line) bg-(--color-surface-2) px-4 py-3">
-        <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
-        <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
-        <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
-        <span class="ml-3 font-mono text-xs text-(--color-ink-faint)">shalom@homelab: ~</span>
-      </div>
-      <div class="space-y-3 p-5 font-mono text-[13px] leading-relaxed">
-        <div>
-          <span class="text-(--color-accent)">$</span>
-          <span class="text-(--color-ink)"> whoami</span>
-          <p class="text-(--color-ink-dim)">devops engineer · cka certified · boston, ma</p>
-        </div>
-        <div>
-          <span class="text-(--color-accent)">$</span>
-          <span class="text-(--color-ink)"> kubectl get nodes</span>
-          <pre class="mt-1 text-xs text-(--color-ink-dim)">NAME               STATUS   ROLES
-shalom-k8s-cp-01   Ready    control-plane
-raspberrypi        Ready    worker</pre>
-        </div>
-        <div>
-          <span class="text-(--color-accent)">$</span>
-          <span class="text-(--color-ink)"> curl -s https://this.site | grep served-by</span>
-          <p class="text-(--color-amber)">served-by: my own k3s cluster ↑</p>
-        </div>
-        <div class="caret">
-          <span class="text-(--color-accent)">$</span>
-        </div>
-      </div>
-    </div>
+    <ul
+      aria-label="Quick facts"
+      class="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-(--color-line-dark) py-6 md:py-8"
+    >
+      {meta.map((item) => (
+        <li class="eyebrow flex items-center gap-3 text-(--color-ink-on-dark-dim)">
+          <span aria-hidden="true" class="inline-block h-1.5 w-1.5 rounded-full bg-(--color-accent)"></span>
+          {item}
+        </li>
+      ))}
+    </ul>
   </div>
 </section>

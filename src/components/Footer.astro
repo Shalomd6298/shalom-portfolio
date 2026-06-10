@@ -1,0 +1,50 @@
+---
+// Footer — DESIGN.md item 9. Dark, minimal. Zero JS.
+import { profile } from "../data/resume";
+
+const wordmark = profile.name.split(" ")[0].toUpperCase();
+const year = new Date().getFullYear();
+
+const links = [
+  { label: "github", href: profile.links.github },
+  { label: "linkedin", href: profile.links.linkedin },
+  { label: "email", href: `mailto:${profile.email}` },
+];
+---
+
+<footer
+  class="border-t border-(--color-line-dark) bg-(--color-dark) text-(--color-ink-on-dark)"
+>
+  <div
+    class="container-site flex flex-col gap-8 pt-12 pb-10 md:flex-row md:items-end md:justify-between md:pt-16"
+  >
+    <p class="display text-5xl md:text-6xl">
+      {wordmark}<span class="align-super text-lg md:text-xl" aria-hidden="true">®</span>
+    </p>
+
+    <nav aria-label="Footer">
+      <ul role="list" class="flex flex-wrap gap-x-7 gap-y-3">
+        {
+          links.map(({ label, href }) => (
+            <li>
+              <a
+                href={href}
+                class="font-mono text-xs tracking-[0.18em] uppercase transition-colors duration-150 hover:text-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container-site pb-8">
+    <p
+      class="font-mono text-[0.7rem] tracking-[0.18em] uppercase text-(--color-ink-on-dark-dim)"
+    >
+      built with astro · runs on my own k3s cluster · © {year}
+    </p>
+  </div>
+</footer>
