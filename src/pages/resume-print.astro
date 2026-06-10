@@ -1,0 +1,124 @@
+---
+// Print-only template — rendered to public/resume.pdf via `playwright pdf`
+// (see scripts/build-resume-pdf.sh). Not linked from the site nav.
+// Deliberately classic resume styling, NOT the site's display aesthetic.
+// No phone number — web-safe contact info only.
+import { profile, experience, projects, skills, education, certifications } from "../data/resume";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{profile.name} — Resume</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --dim: #555;
+        --line: #ddd;
+        --accent: #c43500;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        color: var(--ink);
+        font-size: 10.5px;
+        line-height: 1.45;
+        padding: 36px 44px;
+      }
+      h1 { font-size: 22px; letter-spacing: 0.01em; }
+      .contact { margin-top: 4px; color: var(--dim); font-size: 10px; }
+      .contact a { color: var(--dim); text-decoration: none; }
+      h2 {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 3px;
+        margin: 14px 0 8px;
+      }
+      .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .role { font-weight: 700; font-size: 11px; }
+      .org { color: var(--dim); }
+      .meta { color: var(--dim); font-size: 9.5px; white-space: nowrap; }
+      ul { margin: 3px 0 8px; padding-left: 14px; }
+      li { margin-bottom: 2px; }
+      .skills-grid { display: grid; grid-template-columns: 130px 1fr; gap: 2px 10px; }
+      .skills-grid dt { font-weight: 700; }
+      .skills-grid dd { color: var(--dim); }
+      .proj-name { font-weight: 700; }
+      .two-col { display: flex; justify-content: space-between; gap: 24px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{profile.name}</h1>
+      <p class="contact">
+        {profile.location} ·
+        <a href={`mailto:${profile.email}`}>{profile.email}</a> ·
+        <a href={profile.links.github}>{profile.links.github.replace("https://", "")}</a> ·
+        <a href={profile.links.linkedin}>{profile.links.linkedin.replace("https://www.", "")}</a>
+      </p>
+    </header>
+
+    <h2>Experience</h2>
+    {
+      experience.map((job) => (
+        <section>
+          <div class="row">
+            <p class="role">{job.role} <span class="org">— {job.company}</span></p>
+            <p class="meta">{job.period} · {job.location}</p>
+          </div>
+          <ul>
+            {job.points.map((p) => <li>{p}</li>)}
+          </ul>
+        </section>
+      ))
+    }
+
+    <h2>Projects</h2>
+    {
+      projects.filter((p) => p.name !== "This Website").map((proj) => (
+        <section>
+          <p class="proj-name">{proj.name}</p>
+          <ul>
+            <li>{proj.summary}</li>
+            {proj.details.map((d) => <li>{d}</li>)}
+          </ul>
+        </section>
+      ))
+    }
+
+    <h2>Skills</h2>
+    <dl class="skills-grid">
+      {
+        skills.map((s) => (
+          <>
+            <dt>{s.group}</dt>
+            <dd>{s.items.join(", ")}</dd>
+          </>
+        ))
+      }
+    </dl>
+
+    <div class="two-col">
+      <div style="flex: 1.4">
+        <h2>Education</h2>
+        {
+          education.map((e) => (
+            <div class="row" style="margin-bottom: 4px">
+              <p><strong>{e.school}</strong> — {e.degree} ({e.note})</p>
+              <p class="meta">{e.period}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div style="flex: 1">
+        <h2>Certifications</h2>
+        {certifications.map((c) => <p><strong>{c.name}</strong> — {c.org}</p>)}
+      </div>
+    </div>
+  </body>
+</html>
