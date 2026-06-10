@@ -1,0 +1,36 @@
+---
+import { profile } from "../data/resume";
+const items = [
+  ["experience", "01. experience"],
+  ["projects", "02. projects"],
+  ["skills", "03. skills"],
+  ["contact", "04. contact"],
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-(--color-line) bg-(--color-bg)/85 backdrop-blur">
+  <nav class="container-site flex h-14 items-center justify-between">
+    <a href="#top" class="font-mono text-sm font-semibold text-(--color-accent)">
+      ~/shalom-daniel
+    </a>
+    <div class="hidden items-center gap-6 sm:flex">
+      {items.map(([id, label]) => (
+        <a
+          href={`#${id}`}
+          class="font-mono text-xs text-(--color-ink-dim) transition-colors hover:text-(--color-accent)"
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="/resume.pdf"
+        class="rounded-md border border-(--color-accent-dim) px-3 py-1.5 font-mono text-xs text-(--color-accent) transition-colors hover:bg-(--color-accent)/10"
+      >
+        resume.pdf
+      </a>
+    </div>
+    <a href={`mailto:${profile.email}`} class="font-mono text-xs text-(--color-ink-dim) hover:text-(--color-accent) sm:hidden">
+      contact
+    </a>
+  </nav>
+</header>
