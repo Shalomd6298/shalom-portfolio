@@ -75,7 +75,10 @@ body {
   padding: 0.9rem 1.6rem;
   border-radius: 9999px;
   transition: transform 0.15s ease, opacity 0.15s ease;
-  &:hover { opacity: 0.92; transform: translateY(-1px); }
+  &:hover { opacity: 0.92; }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover { transform: translateY(-1px); }
+  }
 }
 
 @utility btn-outline {
