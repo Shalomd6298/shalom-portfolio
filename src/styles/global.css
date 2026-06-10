@@ -17,8 +17,8 @@
   --color-line-cream: #d6d2c8;
 
   --font-display: "Anton", "Arial Narrow", sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 }
 
 /* ── Base ──────────────────────────────────────────────────────── */
@@ -67,7 +67,9 @@ body {
 @utility btn-solid {
   display: inline-block;
   background: var(--color-accent);
-  color: #fff;
+  /* dark-on-orange: 6.1:1 (white-on-orange fails AA at 3.5:1) */
+  color: var(--color-dark);
+  font-weight: 600;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   text-transform: uppercase;

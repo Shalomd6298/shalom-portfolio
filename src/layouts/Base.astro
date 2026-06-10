@@ -1,4 +1,8 @@
 ---
+// Fonts are self-hosted (Fontsource) — no render-blocking Google Fonts chain.
+import "@fontsource/anton";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
 import { profile } from "../data/resume";
 
@@ -41,12 +45,6 @@ const personSchema = JSON.stringify({
     <meta name="author" content={profile.name} />
     <script type="application/ld+json" set:html={personSchema} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="min-h-screen">
     <a
