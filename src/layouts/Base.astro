@@ -10,6 +10,19 @@ const {
   title = `${profile.name} — ${profile.role}`,
   description = profile.tagline,
 } = Astro.props;
+
+// JSON-LD Person schema — canonical/og:url intentionally omitted until a
+// domain is chosen (tracked in issue #7).
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  email: `mailto:${profile.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Boston", addressRegion: "MA" },
+  sameAs: [profile.links.github, profile.links.linkedin],
+  knowsAbout: ["Kubernetes", "DevOps", "AWS", "Terraform", "CI/CD", "Site Reliability Engineering"],
+});
 ---
 
 <!doctype html>
@@ -22,6 +35,11 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#0e0e0c" />
+    <meta name="author" content={profile.name} />
+    <script type="application/ld+json" set:html={personSchema} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
