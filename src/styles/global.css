@@ -110,6 +110,7 @@ body {
   display: flex;
   width: max-content;
   animation: marquee-scroll 40s linear infinite;
+  &:hover { animation-play-state: paused; }
   @media (prefers-reduced-motion: reduce) { animation: none; }
 }
 
